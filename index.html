@@ -28,8 +28,7 @@
             --royal-blue: #1d4ed8;
             --sky-blue: #0284c7;
 
-            /* Balanced Richer Blue Tones (Not overly light, perfect contrast) */
-            --section-bg-1: #dbeafe; /* रिच म्यूटेड ब्लू */
+            --section-bg-1: #dbeafe;
             --section-bg-2: #cfe0f5;
             --section-bg-3: #c2d6ee;
             --card-surface: #ffffff;
@@ -94,7 +93,7 @@
             color: var(--accent);
         }
 
-        /* Hero Section (Preserved Original) */
+        /* Hero Section */
         .hero {
             min-height: 92vh;
             background: radial-gradient(circle at top left, #1e293b, #0f172a 80%);
@@ -315,7 +314,7 @@
             font-weight: 500;
         }
 
-        /* Faculty Section with Richer Blue Tint */
+        /* Faculty Section */
         #teachers {
             background: linear-gradient(180deg, #dbeafe 0%, #cfe0f5 100%);
         }
@@ -328,48 +327,83 @@
             margin: 0 auto;
         }
 
+        /* Teacher Cards with Visible Thematic Background */
         .faculty-card {
-            background: var(--card-surface);
-            padding: 40px 25px;
+            position: relative;
+            padding: 45px 25px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 14px 30px rgba(15, 39, 74, 0.12);
+            box-shadow: 0 14px 30px rgba(15, 39, 74, 0.15);
             border: 2px solid var(--card-border);
+            overflow: hidden;
             transition: all 0.35s ease;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* Balanced Semi-transparent Overlay to keep illustration visible */
+        .faculty-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.65);
+            z-index: -1;
+            transition: background 0.35s ease;
+        }
+
+        .faculty-card:hover::before {
+            background: rgba(255, 255, 255, 0.50);
+        }
+
+        /* Direct & Dark Thematic Background Images */
+        .faculty-math {
+            background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80');
+        }
+
+        .faculty-chem {
+            background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80');
+        }
+
+        .faculty-physics {
+            background-image: url('https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=800&q=80');
         }
 
         .faculty-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 22px 42px rgba(29, 78, 216, 0.2);
+            box-shadow: 0 22px 42px rgba(29, 78, 216, 0.25);
             border-color: var(--royal-blue);
         }
 
         .faculty-card .icon-box {
-            width: 80px;
-            height: 80px;
+            width: 82px;
+            height: 82px;
             margin: 0 auto 20px;
-            background: #e0edfd;
+            background: #ffffff;
             color: var(--royal-blue);
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            font-size: 1.9rem;
-            box-shadow: inset 0 0 12px rgba(29, 78, 216, 0.12);
+            font-size: 2rem;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.2);
+            border: 2px solid #bfdbfe;
         }
 
         .faculty-card h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             margin-bottom: 6px;
-            color: var(--text-heading);
+            color: #091e42;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.9);
         }
 
         .faculty-card p {
-            color: #d97706;
-            font-weight: 600;
-            font-size: 1.08rem;
+            color: #b45309;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.9);
         }
 
         /* Timings Section */
@@ -423,7 +457,7 @@
             font-size: 1.05rem;
         }
 
-        /* 2-Column: Contact & Admission Section (Deep Tone) */
+        /* 2-Column: Contact & Admission Section */
         .contact-section {
             background: linear-gradient(180deg, #cfe0f5 0%, #bad0ec 100%);
             padding: 90px 8%;
@@ -540,7 +574,7 @@
             box-shadow: 0 8px 25px rgba(217, 119, 6, 0.45);
         }
 
-        /* New Rules & Copyright Guidelines Section */
+        /* Rules & Guidelines Section */
         .academy-rules-section {
             background: #0f1c34;
             color: #e2e8f0;
@@ -661,7 +695,7 @@
         </ul>
     </nav>
 
-    <!-- Hero Section (FamApp Layout & Style) -->
+    <!-- Hero Section -->
     <header class="hero" id="home">
         <div class="hero-container">
             <!-- Left Motivational Content -->
@@ -687,7 +721,7 @@
             <!-- Right Photo with Floating Badge -->
             <div class="hero-right" data-aos="fade-left" data-aos-duration="1000">
                 <div class="hero-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Students Studying">
+                    <img src="nitin.jpg" alt="Students Studying">
                     <div class="floating-badge">
                         <i class="fa-solid fa-medal"></i>
                         <div>
@@ -700,24 +734,24 @@
         </div>
     </header>
 
-    <!-- Faculty / Teachers Section -->
+    <!-- Faculty / Teachers Section (Clear Background Graphics) -->
     <section id="teachers">
         <div class="section-title" data-aos="fade-up">
             <h2>हमारे अनुभवी शिक्षक</h2>
             <p>विषय विशेषज्ञ जो कठिन से कठिन टॉपिक को आसान बनाएं</p>
         </div>
         <div class="faculty-grid">
-            <!-- Gyan Sir -->
-            <div class="faculty-card" data-aos="fade-up" data-aos-delay="100">
+            <!-- Gyan Sir (Mathematics) -->
+            <div class="faculty-card faculty-math" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon-box">
-                    <i class="fa-solid fa-calculator"></i>
+                    <i class="fa-solid fa-square-root-variable"></i>
                 </div>
                 <h3>Gyan Sir</h3>
                 <p>Mathematics Specialist</p>
             </div>
 
-            <!-- Gulab Sir -->
-            <div class="faculty-card" data-aos="fade-up" data-aos-delay="200">
+            <!-- Gulab Sir (Chemistry) -->
+            <div class="faculty-card faculty-chem" data-aos="fade-up" data-aos-delay="200">
                 <div class="icon-box">
                     <i class="fa-solid fa-flask-vial"></i>
                 </div>
@@ -725,8 +759,8 @@
                 <p>Chemistry Specialist</p>
             </div>
 
-            <!-- Sahil Sir -->
-            <div class="faculty-card" data-aos="fade-up" data-aos-delay="300">
+            <!-- Sahil Sir (Physics) -->
+            <div class="faculty-card faculty-physics" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon-box">
                     <i class="fa-solid fa-atom"></i>
                 </div>
@@ -791,7 +825,7 @@
                     <i class="fa-solid fa-phone-volume"></i>
                     <div class="info-text">
                         <strong>हेल्पलाइन / इंक्वायरी:</strong>
-                        <p>+91 98XXXXXXXX / +91 88XXXXXXXX</p>
+                        <p>+91 8808657284 / +91 8887851804</p>
                     </div>
                 </div>
 
