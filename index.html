@@ -327,140 +327,469 @@
             margin: 0 auto;
         }
 
-        /* Teacher Cards with Visible Thematic Background */
+        /* Card with Interactive Background Blur Effect */
         .faculty-card {
             position: relative;
-            padding: 45px 25px;
-            border-radius: 20px;
+            padding: 55px 25px 45px;
+            border-radius: 24px;
             text-align: center;
-            box-shadow: 0 14px 30px rgba(15, 39, 74, 0.15);
+            box-shadow: 0 14px 34px rgba(15, 39, 74, 0.12);
             border: 2px solid var(--card-border);
             overflow: hidden;
-            transition: all 0.35s ease;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            isolation: isolate;
+        }
+
+        .card-bg-layer {
+            position: absolute;
+            inset: -8px;
             background-size: cover;
             background-position: center;
-            z-index: 1;
+            filter: blur(2.5px);
+            transform: scale(1.03);
+            transition: filter 0.45s ease, transform 0.45s ease;
+            z-index: -2;
         }
 
-        /* Balanced Semi-transparent Overlay to keep illustration visible */
-        .faculty-card::before {
-            content: '';
+        .card-mask {
             position: absolute;
             inset: 0;
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.48);
+            transition: background 0.4s ease;
             z-index: -1;
-            transition: background 0.35s ease;
         }
 
-        .faculty-card:hover::before {
-            background: rgba(255, 255, 255, 0.50);
+        .faculty-math .card-bg-layer {
+            background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=85');
         }
 
-        /* Direct & Dark Thematic Background Images */
-        .faculty-math {
-            background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80');
+        .faculty-chem .card-bg-layer {
+            background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=85');
         }
 
-        .faculty-chem {
-            background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80');
-        }
-
-        .faculty-physics {
-            background-image: url('https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=800&q=80');
+        .faculty-physics .card-bg-layer {
+            background-image: url('https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=800&q=85');
         }
 
         .faculty-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 22px 42px rgba(29, 78, 216, 0.25);
+            box-shadow: 0 24px 45px rgba(29, 78, 216, 0.28);
             border-color: var(--royal-blue);
         }
 
-        .faculty-card .icon-box {
-            width: 82px;
-            height: 82px;
-            margin: 0 auto 20px;
-            background: #ffffff;
-            color: var(--royal-blue);
-            display: flex;
+        .faculty-card:hover .card-bg-layer {
+            filter: blur(0px);
+            transform: scale(1.08);
+        }
+
+        .faculty-card:hover .card-mask {
+            background: rgba(255, 255, 255, 0.32);
+        }
+
+        .exp-badge-container {
+            margin-bottom: 22px;
+        }
+
+        .exp-badge {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: #ffffff;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 2rem;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.2);
-            border: 2px solid #bfdbfe;
+            gap: 8px;
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.38);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.3px;
+        }
+
+        .exp-badge i {
+            color: #fbbf24;
+            font-size: 0.95rem;
         }
 
         .faculty-card h3 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 6px;
-            color: #091e42;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.9);
+            margin-bottom: 8px;
+            color: #081a36;
+            letter-spacing: -0.3px;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
         }
 
-        .faculty-card p {
-            color: #b45309;
+        .faculty-card p.specialist {
+            color: #92400e;
             font-weight: 700;
-            font-size: 1.1rem;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.9);
+            font-size: 1.05rem;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 5px 18px;
+            border-radius: 20px;
+            display: inline-block;
+            border: 1.5px solid rgba(245, 158, 11, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
         }
 
         /* Timings Section */
         #timings {
             background: #cfe0f5;
-            padding-top: 25px;
+            padding-top: 35px;
         }
 
         .timing-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
-            max-width: 850px;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 32px;
+            max-width: 950px;
             margin: 0 auto;
         }
 
         .timing-card {
-            background: var(--card-surface);
-            border-radius: 18px;
-            padding: 28px 30px;
+            position: relative;
+            border-radius: 24px;
+            padding: 38px 30px;
             display: flex;
             align-items: center;
             gap: 22px;
-            box-shadow: 0 12px 28px rgba(15, 39, 74, 0.1);
+            box-shadow: 0 14px 34px rgba(15, 39, 74, 0.12);
             border: 2px solid var(--card-border);
-            border-left: 7px solid var(--royal-blue);
-            transition: all 0.3s;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            isolation: isolate;
+        }
+
+        .timing-card .timing-bg-layer {
+            position: absolute;
+            inset: -8px;
+            background-size: cover;
+            background-position: center;
+            filter: blur(2.5px);
+            transform: scale(1.03);
+            transition: filter 0.45s ease, transform 0.45s ease;
+            z-index: -2;
+        }
+
+        .timing-card .timing-mask {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.82);
+            transition: background 0.4s ease;
+            z-index: -1;
+        }
+
+        .timing-morning .timing-bg-layer {
+            background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=85');
+        }
+
+        .timing-evening .timing-bg-layer {
+            background-image: url('https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=800&q=85');
         }
 
         .timing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 32px rgba(15, 39, 74, 0.16);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 45px rgba(29, 78, 216, 0.25);
+            border-color: var(--royal-blue);
         }
 
-        .timing-card i {
-            font-size: 2.4rem;
-            color: var(--accent);
+        .timing-card:hover .timing-bg-layer {
+            filter: blur(0px);
+            transform: scale(1.08);
+        }
+
+        .timing-card:hover .timing-mask {
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .timing-icon-wrap {
+            width: 76px;
+            height: 76px;
+            min-width: 76px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .timing-morning .timing-icon-wrap {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+        }
+
+        .timing-evening .timing-icon-wrap {
+            background: linear-gradient(135deg, #1e3a8a, #4338ca);
+            color: #ffffff;
         }
 
         .timing-info h4 {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 6px;
             color: var(--text-heading);
+            letter-spacing: -0.3px;
         }
 
-        .timing-info span {
-            color: var(--text-body);
-            font-weight: 600;
+        .timing-time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #ffffff;
+            color: var(--royal-blue);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
             font-size: 1.05rem;
+            padding: 6px 16px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(15, 39, 74, 0.1);
+            border: 1px solid var(--card-border);
+            margin-bottom: 5px;
         }
 
-        /* 2-Column: Contact & Admission Section */
-        .contact-section {
+        .timing-sub {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ================= TOPPERS SECTION (Now Above Contact) ================= */
+        #toppers {
             background: linear-gradient(180deg, #cfe0f5 0%, #bad0ec 100%);
-            padding: 90px 8%;
+            padding: 85px 8% 90px;
+            position: relative;
+        }
+
+        .toppers-banner {
+            max-width: 1150px;
+            margin: 0 auto 50px;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+            border: 3px solid #bfdbfe;
+            position: relative;
+        }
+
+        .toppers-banner img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .toppers-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 28, 52, 0.95) 20%, rgba(15, 28, 52, 0.35) 70%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px 40px;
+            color: #ffffff;
+        }
+
+        .toppers-banner-overlay h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toppers-banner-overlay p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            max-width: 650px;
+            line-height: 1.5;
+        }
+
+        /* Top 3 Podium Cards */
+        .podium-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1150px;
+            margin: 0 auto 35px;
+        }
+
+        .podium-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+            border: 2.5px solid #e2e8f0;
+            position: relative;
+            transition: all 0.35s ease;
+        }
+
+        .podium-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        .podium-card.rank-1 {
+            border-color: #f59e0b;
+            background: linear-gradient(180deg, #ffffff 65%, #fef3c7 100%);
+        }
+
+        .podium-card.rank-2 {
+            border-color: #94a3b8;
+            background: linear-gradient(180deg, #ffffff 65%, #f1f5f9 100%);
+        }
+
+        .podium-card.rank-3 {
+            border-color: #d97706;
+            background: linear-gradient(180deg, #ffffff 65%, #ffedd5 100%);
+        }
+
+        .podium-card .medal-badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #ffffff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .rank-1 .medal-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .rank-2 .medal-badge {
+            background: linear-gradient(135deg, #64748b, #94a3b8);
+        }
+
+        .rank-3 .medal-badge {
+            background: linear-gradient(135deg, #b45309, #d97706);
+        }
+
+        .podium-card h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+
+        .podium-card .class-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .podium-card .percentage-pill {
+            background: var(--royal-blue);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            padding: 8px 24px;
+            border-radius: 40px;
+            display: inline-block;
+            box-shadow: 0 6px 16px rgba(29, 78, 216, 0.3);
+        }
+
+        .rank-1 .percentage-pill {
+            background: linear-gradient(135deg, #f59e0b, #b45309);
+        }
+
+        /* 10-Student List Grid */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 18px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .student-item {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(15, 39, 74, 0.08);
+        }
+
+        .student-item:hover {
+            background: #ffffff;
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 22px rgba(15, 39, 74, 0.15);
+        }
+
+        .student-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .student-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #1e3a8a;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            border: 1.5px solid rgba(56, 189, 248, 0.4);
+        }
+
+        .student-name strong {
+            display: block;
+            color: var(--text-heading);
+            font-size: 1.05rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+        }
+
+        .student-name span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .student-score {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #b45309;
+            background: rgba(245, 158, 11, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+        }
+
+        /* 2-Column: Contact & Admission Section (Now Below Toppers) */
+        .contact-section {
+            background: linear-gradient(180deg, #bad0ec 0%, #0f1c34 100%);
+            padding: 90px 8% 70px;
         }
 
         .contact-grid {
@@ -496,27 +825,35 @@
             display: flex;
             align-items: flex-start;
             gap: 18px;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
         .info-item i {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             color: var(--royal-blue);
             margin-top: 3px;
+            width: 25px;
+            text-align: center;
         }
 
         .info-text strong {
             display: block;
             color: var(--text-heading);
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             margin-bottom: 3px;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        .info-text p, .info-text span {
+        .info-text p, .info-text span, .info-text a {
             color: var(--text-body);
             font-size: 0.98rem;
             line-height: 1.6;
+            text-decoration: none;
+        }
+
+        .info-text a:hover {
+            color: var(--royal-blue);
+            text-decoration: underline;
         }
 
         /* Admission Form */
@@ -676,6 +1013,19 @@
             .hero-left .motto {
                 font-size: 1.15rem;
             }
+            .timing-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .toppers-banner img {
+                height: 280px;
+            }
+            .toppers-banner-overlay {
+                padding: 20px;
+            }
+            .toppers-banner-overlay h3 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -691,6 +1041,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#teachers">हमारे शिक्षक</a></li>
             <li><a href="#timings">बैच समय</a></li>
+            <li><a href="#toppers">हमारे टॉपर्स</a></li>
             <li><a href="#contact">संपर्क व प्रवेश</a></li>
         </ul>
     </nav>
@@ -734,39 +1085,56 @@
         </div>
     </header>
 
-    <!-- Faculty / Teachers Section (Clear Background Graphics) -->
+    <!-- Faculty / Teachers Section -->
     <section id="teachers">
         <div class="section-title" data-aos="fade-up">
             <h2>हमारे अनुभवी शिक्षक</h2>
             <p>विषय विशेषज्ञ जो कठिन से कठिन टॉपिक को आसान बनाएं</p>
         </div>
         <div class="faculty-grid">
+            
             <!-- Gyan Sir (Mathematics) -->
             <div class="faculty-card faculty-math" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon-box">
-                    <i class="fa-solid fa-square-root-variable"></i>
+                <div class="card-bg-layer"></div>
+                <div class="card-mask"></div>
+                
+                <div class="exp-badge-container">
+                    <span class="exp-badge">
+                        <i class="fa-solid fa-award"></i> 6+ Years Experience
+                    </span>
                 </div>
                 <h3>Gyan Sir</h3>
-                <p>Mathematics Specialist</p>
+                <p class="specialist">Mathematics Specialist</p>
             </div>
 
             <!-- Gulab Sir (Chemistry) -->
             <div class="faculty-card faculty-chem" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box">
-                    <i class="fa-solid fa-flask-vial"></i>
+                <div class="card-bg-layer"></div>
+                <div class="card-mask"></div>
+
+                <div class="exp-badge-container">
+                    <span class="exp-badge">
+                        <i class="fa-solid fa-award"></i> 8+ Years Experience
+                    </span>
                 </div>
                 <h3>Gulab Sir</h3>
-                <p>Chemistry Specialist</p>
+                <p class="specialist">Chemistry Specialist</p>
             </div>
 
             <!-- Sahil Sir (Physics) -->
             <div class="faculty-card faculty-physics" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon-box">
-                    <i class="fa-solid fa-atom"></i>
+                <div class="card-bg-layer"></div>
+                <div class="card-mask"></div>
+
+                <div class="exp-badge-container">
+                    <span class="exp-badge">
+                        <i class="fa-solid fa-award"></i> 5+ Years Experience
+                    </span>
                 </div>
                 <h3>Sahil Sir</h3>
-                <p>Physics Specialist</p>
+                <p class="specialist">Physics Specialist</p>
             </div>
+
         </div>
     </section>
 
@@ -774,30 +1142,194 @@
     <section id="timings">
         <div class="section-title" data-aos="fade-up">
             <h2>बैच समय सारणी (Timings)</h2>
-            <p>अपनी सुविधानुसार सुबह या शाम का बैच चुनें</p>
+            <p>अपनी सुविधानुसार सुबह या शाम का उपयुक्त बैच चुनें</p>
         </div>
         <div class="timing-container">
-            <div class="timing-card" data-aos="fade-right" data-aos-duration="800">
-                <i class="fa-regular fa-sun"></i>
+            
+            <!-- Morning Batch Card -->
+            <div class="timing-card timing-morning" data-aos="fade-right" data-aos-duration="850">
+                <div class="timing-bg-layer"></div>
+                <div class="timing-mask"></div>
+                
+                <div class="timing-icon-wrap">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
                 <div class="timing-info">
                     <h4>सुबह का बैच</h4>
-                    <span>06:00 AM - 07:00 AM</span>
+                    <div class="timing-time-badge">
+                        <i class="fa-regular fa-clock"></i> 06:00 AM - 07:00 AM
+                    </div>
+                    <span class="timing-sub">ताज़ा शुरुआत व ऊर्जावान पढ़ाई</span>
                 </div>
             </div>
-            <div class="timing-card" data-aos="fade-left" data-aos-duration="800">
-                <i class="fa-solid fa-moon"></i>
+
+            <!-- Evening Batch Card -->
+            <div class="timing-card timing-evening" data-aos="fade-left" data-aos-duration="850">
+                <div class="timing-bg-layer"></div>
+                <div class="timing-mask"></div>
+
+                <div class="timing-icon-wrap">
+                    <i class="fa-solid fa-cloud-moon"></i>
+                </div>
                 <div class="timing-info">
                     <h4>शाम का बैच</h4>
-                    <span>01:00 PM - 05:00 PM</span>
+                    <div class="timing-time-badge">
+                        <i class="fa-regular fa-clock"></i> 01:00 PM - 05:00 PM
+                    </div>
+                    <span class="timing-sub">स्कूल के बाद गहन रिवीज़न व क्लास</span>
                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= TOPPERS SECTION (Brought Up) ================= -->
+    <section id="toppers">
+        <div class="section-title" data-aos="fade-up">
+            <h2 style="color: var(--text-heading);">हमारे चमकते सितारे (Class 10th Toppers)</h2>
+            <p style="color: var(--text-muted);">"मेहनत इनकी, मार्गदर्शन हमारा — परीक्षा परिणाम में अव्वल हमारे होनहार"</p>
+        </div>
+
+        <!-- School Uniform Students Banner -->
+        <div class="toppers-banner" data-aos="zoom-in" data-aos-duration="900">
+            <img src="420.jpg" alt="School Students Group in Uniform">
+            <div class="toppers-banner-overlay">
+                <h3><i class="fa-solid fa-trophy" style="color: #fbbf24;"></i> हाई स्कूल (10th and 12thBoard) टॉपर्स बैच</h3>
+                <p>जीनियस 2.0 एकेडमी के नियमित टेस्ट और स्पेशल डाउट क्लीयरिंग के बलबूते छात्रों ने रचा इतिहास।</p>
+            </div>
+        </div>
+
+        <!-- Top 3 Ranking Highlights -->
+        <div class="podium-grid">
+            <!-- Rank 1: Premanshu -->
+            <div class="podium-card rank-1" data-aos="fade-up" data-aos-delay="100">
+                <div class="medal-badge">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h4>Premanshu</h4>
+                <span class="class-label">कक्षा 10वीं | Rank 1 (Academy Topper)</span>
+                <div>
+                    <span class="percentage-pill">97%</span>
+                </div>
+            </div>
+
+            <!-- Rank 2: Saumya -->
+            <div class="podium-card rank-2" data-aos="fade-up" data-aos-delay="200">
+                <div class="medal-badge">
+                    <i class="fa-solid fa-medal"></i>
+                </div>
+                <h4>Saumya</h4>
+                <span class="class-label">कक्षा 10वीं | Rank 2</span>
+                <div>
+                    <span class="percentage-pill">91%</span>
+                </div>
+            </div>
+
+            <!-- Rank 3: Priyanshu -->
+            <div class="podium-card rank-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="medal-badge">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h4>Priyanshu</h4>
+                <span class="class-label">कक्षा 10वीं | Rank 3</span>
+                <div>
+                    <span class="percentage-pill">89%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remaining Top 10 List Grid -->
+        <div class="students-grid" data-aos="fade-up" data-aos-delay="200">
+            <!-- 4 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">4</div>
+                    <div class="student-name">
+                        <strong>Aniket</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">88%</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">5</div>
+                    <div class="student-name">
+                        <strong>Rahul</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">86%</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">6</div>
+                    <div class="student-name">
+                        <strong>Utkarsh</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">86%</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">7</div>
+                    <div class="student-name">
+                        <strong>Shreyansh</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">85%</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">8</div>
+                    <div class="student-name">
+                        <strong>Yashi</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">85%</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">9</div>
+                    <div class="student-name">
+                        <strong>Raunak</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">80%</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="student-item">
+                <div class="student-meta">
+                    <div class="student-avatar">10</div>
+                    <div class="student-name">
+                        <strong>Arnav</strong>
+                        <span>Class 10th</span>
+                    </div>
+                </div>
+                <div class="student-score">79%</div>
             </div>
         </div>
     </section>
 
-    <!-- 2-Column Contact & Admission Section -->
+    <!-- ================= 2-Column Contact & Admission Section (Moved Down) ================= -->
     <section class="contact-section" id="contact">
         <div class="section-title" data-aos="fade-up">
-            <h2>संपर्क एवं कोचिंग का पता</h2>
+            <h2 style="color: var(--text-heading);">संपर्क एवं कोचिंग का पता</h2>
         </div>
         <div class="contact-grid">
             
@@ -805,14 +1337,16 @@
             <div class="contact-col" data-aos="fade-right" data-aos-duration="900">
                 <h3><i class="fa-solid fa-map-location-dot" style="color: #ef4444;"></i> कोचिंग का पता</h3>
                 
+                <!-- Sthan / Address -->
                 <div class="info-item">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i>
                     <div class="info-text">
                         <strong>स्थान:</strong>
                         <p>महाराजपुर, निकट ऑक्सफोर्ड स्कूल (Near Oxford School), जिला: कानपुर नगर, उत्तर प्रदेश</p>
                     </div>
                 </div>
 
+                <!-- Class Timings -->
                 <div class="info-item">
                     <i class="fa-solid fa-clock"></i>
                     <div class="info-text">
@@ -821,19 +1355,39 @@
                     </div>
                 </div>
 
+                <!-- Available Classes -->
                 <div class="info-item">
-                    <i class="fa-solid fa-phone-volume"></i>
+                    <i class="fa-solid fa-book-open" style="color: #2563eb;"></i>
+                    <div class="info-text">
+                        <strong>उपलब्ध कक्षाएं:</strong>
+                        <p>कक्षा 6 से 12 तक (गणित, भौतिकी और रसायन विज्ञान)</p>
+                    </div>
+                </div>
+
+                <!-- Helpline / Phone -->
+                <div class="info-item">
+                    <i class="fa-solid fa-phone-volume" style="color: #10b981;"></i>
                     <div class="info-text">
                         <strong>हेल्पलाइन / इंक्वायरी:</strong>
                         <p>+91 8808657284 / +91 8887851804</p>
                     </div>
                 </div>
 
+                <!-- Email ID -->
                 <div class="info-item">
-                    <i class="fa-solid fa-book-open"></i>
+                    <i class="fa-solid fa-envelope" style="color: #ea4335;"></i>
                     <div class="info-text">
-                        <strong>उपलब्ध कक्षाएं:</strong>
-                        <p>कक्षा 6 से 12 तक (गणित, भौतिकी और रसायन विज्ञान)</p>
+                        <strong>ईमेल (Email):</strong>
+                        <p><a href="mailto:singhgyan39532@gmail.com">singhgyan39532@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <!-- Instagram Account -->
+                <div class="info-item">
+                    <i class="fa-brands fa-instagram" style="color: #e1306c;"></i>
+                    <div class="info-text">
+                        <strong>इंस्टाग्राम (Instagram):</strong>
+                        <p><a href="https://instagram.com/office_genius" target="_blank">@office_genius</a></p>
                     </div>
                 </div>
             </div>
